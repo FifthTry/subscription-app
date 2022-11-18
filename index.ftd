@@ -105,7 +105,7 @@ You can update default form field labels als if you want to change it.
 lang: ftd
 
 \-- subscribe.subscription-app my-form-data:
-visible: true
+visible: true --> (false) to disable subscription app
 title: Subscribe to my mailing list
 cta: Sign Me Up
 body: $subscription-about
