@@ -57,6 +57,7 @@ spacing: 20
 padding-horizontal: 20
 padding-vertical: 20
 background-color: $fpm.color.main.background.base
+height: fill
 
 
 -- pd.package: Subscription App
@@ -89,9 +90,10 @@ data: $dialog-data
 
 -- ftd.column subscribe:
 subscription-app data:
-width: 500
+width: 400
 anchor: window
 position: bottom-right
+z-index: 1000
 
 
 --- ftd.column:
@@ -107,48 +109,54 @@ id: inner-wrap
 
 --- ftd.column:
 align: right
-top: 4
+top: 12
 right: 12
 padding-vertical: 4
 padding-horizontal: 4
 anchor: parent
-border-top-radius: 5
+border-radius: 6
+border-width: 1
+border-color: $fpm.color.main.border
+$on-click$: $minify = true
+$on-click$: $data.visible = false
 
 --- ftd.image:
 src: $assets.files.images.minify.svg
-width: 42
-height: 42
-$on-click$: $minify = true
-$on-click$: $data.visible = false
+width: 22
+height: 22
 
 --- container: inner-wrap
 
 --- ftd.text: $data.title
-role: $fpm.type.heading-medium
+role: $fpm.type.heading-small
 color: $fpm.color.main.text-strong
-margin-top: $fpm.space.space-2
+margin-top: -10
 
 --- ftd.text: 
-role: $fpm.type.copy-large
+role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 text: $data.body
 
 --- ftd.column:
 width: fill
-spacing: 24
+spacing: 12
+id: form
 
 --- form.input-box: Your First Name(Optional)
 $value: 
-$error: This field is mandatory
+;$error: This field is mandatory
 placeholder: Your First Name(Optional)
 label-top: true
+width: 300
 
 --- form.input-box: Email Address
 $value: 
 $error: This field is mandatory
 placeholder: abc@fifthtry.com
 label-top: true
+width: 300
 
+--- container: form
 
 --- ftd.column:
 margin-left: $fpm.space.space-4
@@ -178,7 +186,7 @@ anchor: window
 position: bottom-right
 z-index: 1000
 
---- button.button: Subscribe
+--- button.button: $data.cta-maximise
 role: tertiary
 large: true
 $on-click$: $minify = false
