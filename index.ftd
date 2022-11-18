@@ -159,7 +159,7 @@ width: 300
 --- container: form
 
 --- ftd.column:
-margin-left: $fpm.space.space-4
+margin-left: $fpm.space.space-2
 
 --- button.button: Subscribe
 role: primary
