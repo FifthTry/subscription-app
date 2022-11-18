@@ -1,5 +1,6 @@
 -- import: fifthtry.github.io/subscription-app/assets
 -- import: fifthtry.github.io/package-doc/doc as pd
+-- import: fifthtry.github.io/package-doc/typography as tf
 -- import: fifthtry.github.io/package-doc/code-block as cb
 
 
@@ -57,7 +58,7 @@ spacing: 20
 padding-horizontal: 20
 padding-vertical: 20
 background-color: $fpm.color.main.background.base
-height: fill
+
 
 
 -- pd.package: Subscription App
@@ -69,13 +70,61 @@ How to use?
 
 Add below lines into `FPM.ftd` file:
 
--- cb.code:
+-- cb.code: 
 lang: ftd
 
 \-- fpm.dependency: fifthtry.github.io/subscription-app as subscribe
 
-\-- fpm.auto-import: as
+\-- fpm.auto-import: subscribe
 
+
+-- tf.markdown:
+
+You can change defaults if you want to change body copy of subscription form.
+
+
+-- cb.code: 
+lang: ftd
+
+\-- subscribe.subscription-about:
+
+Sign up here to experience how our forms work
+and learn how you can use them to build
+your business.
+
+
+PLUS! Grab our Essential Creators Toolkit.
+
+
+-- tf.markdown:
+
+You can update default form field labels als if you want to change it.
+
+
+-- cb.code: 
+lang: ftd
+
+\-- subscribe.subscription-app my-form-data:
+visible: true
+title: Subscribe to my mailing list
+cta: Sign Me Up
+body: $subscription-about
+cta-maximise: Subscribe
+legal: We won't send you spam. Unsubscribe at any time.
+
+
+-- tf.h3: Usage:
+
+Once you update defaults you can add subscribe app to your project via addding 
+it to `-- subscribe` component. 
+
+Below is sample:
+
+-- cb.code: 
+lang: ftd
+
+\-- subscribe.subscribe:
+data: $my-form-data
 
 
 -- subscribe:
