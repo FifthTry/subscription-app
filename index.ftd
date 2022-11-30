@@ -6,11 +6,29 @@
 
 
 
+
 -- boolean is-mobile: false
 
 -- is-mobile: true
 if: $ftd.device == mobile
 
+
+
+
+
+-- boolean $set-subscription: false
+$always-include$: true
+
+-- object what-are-subscription-object:
+function: ls.set-boolean
+variable: $set-subscription
+
+-- boolean $set-minify: false
+$always-include$: true
+
+-- object what-are-minify-object:
+function: ls.set-boolean
+variable: $set-minify
 
 -- boolean minify: false
 
@@ -34,6 +52,18 @@ string cta-maximise:
 string legal: 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 -- subscription-app dialog-data:
 visible: true
 title: Subscribe to my mailing list
@@ -41,6 +71,7 @@ cta: Sign Me Up
 body: $subscription-about
 cta-maximise: Subscribe
 legal: We won't send you spam. Unsubscribe at any time.
+
 
 
 
@@ -58,8 +89,6 @@ spacing: 20
 padding-horizontal: 20
 padding-vertical: 20
 background-color: $fpm.color.main.background.base
-
-
 
 -- pd.package: Subscription App
 name: fifthtry.github.io/subscription-app
@@ -137,6 +166,8 @@ data: $dialog-data
 
 
 
+
+
 -- ftd.column subscribe:
 subscription-app data:
 width: 400
@@ -144,9 +175,11 @@ anchor: window
 position: bottom-right
 z-index: 1000
 
+--- ftd.column:
+if: not $set-subscription
 
 --- ftd.column:
-if: $data.visible
+if: not $set-minify
 background-color: $fpm.color.main.background.overlay
 border-radius: 8
 border-width: 1
@@ -166,8 +199,8 @@ anchor: parent
 border-radius: 6
 border-width: 1
 border-color: $fpm.color.main.border
-$on-click$: $minify = true
-$on-click$: $data.visible = false
+$on-click$: $set-minify = true
+$on-click$: message-host $what-are-minify-object
 
 --- ftd.image:
 src: $assets.files.images.minify.svg
@@ -213,6 +246,8 @@ margin-left: $fpm.space.space-2
 --- button.button: Subscribe
 role: primary
 large: true
+$on-click$: $set-subscription = true
+$on-click$: message-host $what-are-subscription-object
 
 --- container: inner-wrap
 
@@ -230,7 +265,7 @@ text: $data.legal
 --- container: ftd.main
 
 --- ftd.column:
-if: not $data.visible
+if: $set-minify
 anchor: window
 position: bottom-right
 z-index: 1000
@@ -239,5 +274,19 @@ z-index: 1000
 role: tertiary
 large: true
 $on-click$: $minify = false
-$on-click$: $data.visible = true
+$on-click$: $set-minify = false
+$on-click$: message-host $what-are-minify-object
 
+--- container: ftd.main
+
+--- ftd.column:
+if: $set-subscription
+anchor: window
+position: bottom-right
+z-index: 1000
+
+--- ftd.text: Thank you for subscribe us!
+role: $fpm.type.heading-small
+color:$fpm.color.main.text-strong
+padding-vertical: 12
+padding-horizontal: 16
