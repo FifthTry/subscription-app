@@ -176,10 +176,9 @@ position: bottom-right
 z-index: 1000
 
 --- ftd.column:
-if: not $set-subscription
+if: not $set-minify
 
 --- ftd.column:
-if: not $set-minify
 background-color: $fpm.color.main.background.overlay
 border-radius: 8
 border-width: 1
@@ -220,6 +219,7 @@ color: $fpm.color.main.text
 text: $data.body
 
 --- ftd.column:
+if: not $set-subscription
 width: fill
 spacing: 12
 id: form
@@ -251,6 +251,28 @@ $on-click$: message-host $what-are-subscription-object
 
 --- container: inner-wrap
 
+
+--- ftd.row:
+if: $set-subscription
+width: fill
+height: 200
+border-radius: 8
+border-color: $fpm.color.main.border
+border-width: 1
+padding-vertical: 24
+padding-horizontal: 24
+
+--- ftd.column:
+align: center
+
+--- ftd.text: Thank you for subscribing with us.
+role: $fpm.type.heading-small
+text-align: center
+color: $fpm.color.main.custom.one
+
+--- container: inner-wrap
+
+
 --- ftd.column:
 width: fill
 margin-top: $fpm.space.space-8
@@ -279,14 +301,3 @@ $on-click$: message-host $what-are-minify-object
 
 --- container: ftd.main
 
---- ftd.column:
-if: $set-subscription
-anchor: window
-position: bottom-right
-z-index: 1000
-
---- ftd.text: Thank you for subscribe us!
-role: $fpm.type.heading-small
-color:$fpm.color.main.text-strong
-padding-vertical: 12
-padding-horizontal: 16
