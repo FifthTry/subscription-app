@@ -246,8 +246,11 @@ margin-left: $fpm.space.space-2
 --- button.button: Subscribe
 role: primary
 large: true
+$on-click$: $set-minify = true
+$on-click$: message-host $what-are-minify-object
 $on-click$: $set-subscription = true
 $on-click$: message-host $what-are-subscription-object
+
 
 --- container: inner-wrap
 
